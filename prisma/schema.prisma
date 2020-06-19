@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./../db.db"
+}
+
+generator typegraphql {
+  provider = "node node_modules/typegraphql-prisma/generator.js"
+  output   = "../prisma/generated/type-graphql"
+}
+
+model Test {
+  id        Int       @default(autoincrement()) @id
+  date      DateTime?
+  updatedAt DateTime  @default(now())
+  createdAt DateTime  @updatedAt
+
+  @@map(name: "test")
+}
